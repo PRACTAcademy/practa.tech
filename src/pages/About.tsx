@@ -14,7 +14,7 @@ export default function About() {
             duration: 1,
             scrollTrigger: {
                 trigger: ".fade-in",
-                start: "top 80%", // Inicia a animação quando o elemento estiver 80% da tela
+                start: "top 80%",
                 end: "top 30%",
                 toggleActions: "play none none none",
             }

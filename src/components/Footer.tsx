@@ -8,7 +8,7 @@ const Footer = () => {
                     <div>
                         <h3 className="text-xl font-bold mb-4">MITPA</h3>
                         <p className="text-gray-400 text-sm">
-                            Building an open-source educational community that connects students, teachers and developers.
+                            Building an open-source educational community that connects students and developers.
                         </p>
                     </div>
 
@@ -54,7 +54,7 @@ const Footer = () => {
 
                 <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
                     <div className="text-sm text-gray-500 mb-4 md:mb-0">
-                        © 2025 MITRA. All rights reserved.
+                        © 2025 MITPA. All rights reserved.
                     </div>
                     <div className="flex space-x-6">
                         <a href="#terms" className="text-sm text-gray-500 hover:text-gray-400">Terms of Service</a>
