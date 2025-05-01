@@ -5,8 +5,8 @@ import Image from 'next/image';
 export default function SEs() {
 
     return (
-        <div className="flex items-start mt-15 ml-20 text-lg gap-8">
-            <div className="w-1/2">
+        <div className="flex flex-col md:flex-row items-start mt-15 ml-20 text-lg gap-8">
+            <div className="w-full md:w-1/2">
                 <h1 className="font-bold text-3xl mt-25 fade-in">Simulated Exams</h1>
                 <p>
                     SEs (Simulated Exams) are high-quality practice tests designed<br />
@@ -18,7 +18,7 @@ export default function SEs() {
                 </p>
             </div>
 
-            <div className="w-1/2 -mt-20">
+            <div className="w-full md:w-1/2 -mt-20">
                 <Image
                     src="https://cdn-mitpa-tech.vercel.app/SE_mockup.logo.png"
                     alt="SE Mockup"

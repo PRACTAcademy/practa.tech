@@ -34,7 +34,7 @@ const FAQ = () => {
     ];
 
     return (
-        <section id="faq" className="mitpa-section">
+        <section id="faq" className="mitpa-section px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
                 <h2 className="mitpa-heading font-bold text-4xl">FAQ</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

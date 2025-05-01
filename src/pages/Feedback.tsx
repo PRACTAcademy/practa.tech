@@ -8,7 +8,7 @@ export default function Feedback() {
     if (state.succeeded) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen p-6">
-                <h1 className="text-8xl font-bold mt-25 mb-10 ml-35 text-center">
+                <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold mt-10 md:mt-15 mb-10 text-center">
                     thank you <br /> for <br /> your feedback
                 </h1>
             </div>
@@ -17,14 +17,14 @@ export default function Feedback() {
 
     return (
         <div className="flex items-center justify-center min-h-screen p-6">
-            <div className="flex flex-row items-start space-x-80">
-                <h1 className="text-8xl font-bold text-left mt-20">
+            <div className="flex flex-col md:flex-row items-start space-y-8 md:space-y-0 md:space-x-8 lg:space-x-80">
+                <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-left mt-10 md:mt-20">
                     give us <br /> your <br /> feedback
                 </h1>
 
                 <form
                     onSubmit={handleSubmit}
-                    className="w-[500px] bg-white p-8 rounded-lg shadow-md space-y-8"
+                    className="w-full md:w-[500px] bg-white p-8 rounded-lg shadow-md space-y-8"
                 >
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>

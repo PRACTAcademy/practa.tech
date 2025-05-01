@@ -22,12 +22,12 @@ export default function About() {
     }, []);
 
     return (
-        <div className="mt-15 ml-20 text-lg">
+        <div className="mt-15 ml-20 text-lg md:mt-10 md:ml-10 lg:mt-5 lg:ml-5">
             <h1 className={"font-bold text-3xl mt-5 fade-in"}>Who We Are</h1>
             <p className="fade-in">MITPA is an open-source educational community that connects students from all around the world by democratizing knowledge <br/> through technology and collaboration.</p>
             <h1 className={"font-bold text-3xl mt-5 fade-in"}>Our Mission</h1>
             <p className="fade-in">Our aim is to help students reach their full potential by providing free tools, interactive practice tests, and a collaborative <br/> environment designed to inspire academic growth.</p>
-            <div className="flex space-x-10">
+            <div className="flex flex-col md:flex-row space-x-0 md:space-x-10">
                 <div>
                     <h1 className={"font-bold text-3xl mt-5 fade-in"}>How to Contribute</h1>
                     <p className="fade-in">You can contribute by:</p>

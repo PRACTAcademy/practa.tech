@@ -1,4 +1,3 @@
-// pages/community.tsx
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -42,7 +41,7 @@ export default function Community({ event }: Props) {
     return (
         <main className="min-h-screen text-white">
             <section className="flex items-center justify-center p-6">
-                <div className="max-w-5xl w-full flex rounded-lg overflow-hidden border border-red-900">
+                <div className="max-w-5xl w-full flex flex-col md:flex-row rounded-lg overflow-hidden border border-red-900">
                     {/* Texto */}
                     <div className="w-full md:w-1/2 p-8 flex flex-col justify-between">
                         <div>
@@ -59,7 +58,7 @@ export default function Community({ event }: Props) {
                         </div>
                     </div>
 
-                    <div className="hidden md:block w-1/2 relative h-[350px]">
+                    <div className="hidden md:block w-full md:w-1/2 relative h-[350px]">
                         <Image
                             src={event.image}
                             alt={event.name}
