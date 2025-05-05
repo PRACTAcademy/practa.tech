@@ -28,7 +28,7 @@ export default function Feedback() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
             >
-                <h1 className="text-8xl font-bold mt-25 mb-10 ml-35 text-center">
+                <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mt-10 mb-10 text-center">
                     thank you <br /> for <br /> your feedback
                 </h1>
             </motion.div>
@@ -37,19 +37,19 @@ export default function Feedback() {
 
     return (
         <motion.div
-            className="flex items-center justify-center min-h-screen p-6 parallax"
+            className="flex items-center justify-center min-h-screen p-4 md:p-6 parallax"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
         >
-            <div className="flex flex-row items-start space-x-80">
-                <h1 className="text-8xl font-bold text-left mt-20">
+            <div className="flex flex-col md:flex-row items-center md:items-start md:space-x-20 lg:space-x-40 w-full max-w-5xl mx-auto">
+                <h1 className="text-7xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-center md:text-left mt-10 md:mt-20 mb-6 md:mb-0">
                     give us <br /> your <br /> feedback
                 </h1>
 
                 <form
                     onSubmit={handleSubmit}
-                    className="w-[500px] bg-white p-8 rounded-lg shadow-md space-y-8"
+                    className="w-full max-w-[400px] sm:max-w-[500px] bg-white p-4 sm:p-8 rounded-lg shadow-md space-y-4 sm:space-y-8"
                 >
                     <div>
                         <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
