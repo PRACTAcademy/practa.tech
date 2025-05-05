@@ -74,6 +74,29 @@ export const metadata: Metadata = {
     themeColor: "#000000",
     category: "education",
     applicationName: "MITPA",
+    // Additional meta tags for SEO improvement
+    alternates: {
+        canonical: "https://mitpa.tech",
+        languages: {
+            "en-US": "https://mitpa.tech/en-US",
+            "pt-BR": "https://mitpa.tech/pt-BR",
+        },
+    },
+    manifest: "/site.webmanifest",
+    appleWebApp: {
+        capable: true,
+        title: "MITPA",
+        statusBarStyle: "black-translucent",
+    },
+    formatDetection: {
+        telephone: false,
+        address: false,
+        email: false,
+    },
+    other: {
+        "msapplication-TileColor": "#da532c",
+        "msapplication-config": "/browserconfig.xml",
+    },
 };
 
 export default function RootLayout({

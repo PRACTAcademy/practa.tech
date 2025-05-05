@@ -18,6 +18,31 @@ export default function Feedback() {
                 scrub: true,
             },
         });
+
+        // Additional animations using gsap
+        gsap.from(".fade-in-left", {
+            x: -100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".fade-in-left",
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true,
+            },
+        });
+
+        gsap.from(".fade-in-right", {
+            x: 100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".fade-in-right",
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true,
+            },
+        });
     }, []);
 
     if (state.succeeded) {

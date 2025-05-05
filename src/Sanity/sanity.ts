@@ -5,6 +5,7 @@ const client = createClient({
     dataset: 'production',
     apiVersion: '2023-01-01',
     useCdn: false,
+    token: process.env.SANITY_API_TOKEN, // Added token for authentication
 });
 
 export async function getMainEvent() {
@@ -53,5 +54,40 @@ export async function getProjects() {
     } catch (error) {
         console.error(error);
         throw new Error("Error fetching projects");
+    }
+}
+
+// Added function to fetch a single blog post by slug
+export async function getBlogPostBySlug(slug: string) {
+    try {
+        return await client.fetch(`*[_type == "blogPost" && slug.current == $slug][0]{
+      _id,
+      title,
+      slug,
+      publishedAt,
+      excerpt,
+      coverImage,
+      body
+    }`, { slug });
+    } catch (error) {
+        console.error(error);
+        throw new Error("Error fetching blog post by slug");
+    }
+}
+
+// Added function to fetch a single project by ID
+export async function getProjectById(id: string) {
+    try {
+        return await client.fetch(`*[_type == "project" && _id == $id][0]{
+      _id,
+      title,
+      description,
+      thumbnail,
+      technologies,
+      link
+    }`, { id });
+    } catch (error) {
+        console.error(error);
+        throw new Error("Error fetching project by ID");
     }
 }

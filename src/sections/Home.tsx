@@ -11,6 +11,8 @@ import {
     AnimatePresence,
 } from "framer-motion";
 import Link from "next/link";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 type VantaGlobeEffect = {
     setOptions: (options: Record<string, unknown>) => void;
@@ -130,6 +132,43 @@ export default function WelcomePage() {
 
     // ----------- FIM DA ANIMAÇÃO SUAVE -----------
 
+    useEffect(() => {
+        gsap.to(".parallax", {
+            y: -50,
+            scrollTrigger: {
+                trigger: ".parallax",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+            },
+        });
+
+        // Additional animations using gsap
+        gsap.from(".fade-in-left", {
+            x: -100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".fade-in-left",
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true,
+            },
+        });
+
+        gsap.from(".fade-in-right", {
+            x: 100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".fade-in-right",
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true,
+            },
+        });
+    }, []);
+
     return (
         <>
             {/* Hero Section */}
@@ -177,7 +216,7 @@ export default function WelcomePage() {
             {/* Parallax Scroll Section */}
             <div
                 ref={parallaxRef}
-                className="relative bg-black text-black min-h-[200vh] -z-10"
+                className="relative bg-black text-black min-h-[200vh] -z-10 parallax"
             >
                 <motion.div
                     className="fixed top-0 left-0 w-full z-0 bg-gradient-to-b from-red-700 via-red-500 to-gray-200"

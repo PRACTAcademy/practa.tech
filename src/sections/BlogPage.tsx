@@ -34,6 +34,31 @@ export default function BlogFeed() {
                 scrub: true,
             },
         });
+
+        // Additional animations using gsap
+        gsap.from(".fade-in-left", {
+            x: -100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".fade-in-left",
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true,
+            },
+        });
+
+        gsap.from(".fade-in-right", {
+            x: 100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".fade-in-right",
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true,
+            },
+        });
     }, []);
 
     return (
@@ -59,7 +84,7 @@ export default function BlogFeed() {
                 {posts.map((post) => (
                     <div
                         key={post._id}
-                        className="bg-[#111] border border-gray-800 hover:border-white rounded-lg overflow-hidden transition-all duration-300"
+                        className="bg-[#111] border border-gray-800 hover:border-white rounded-lg overflow-hidden transition-all duration-300 fade-in-left"
                     >
                         <img
                             src={post.coverImage}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 const COLORS = ["#FF4C4C", "#FFA500", "#FFD700", "#4CAF50"];
 
@@ -16,6 +17,8 @@ type DataType = {
     name: string;
     value: number;
 };
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function MakeTestExam() {
     const [data, setData] = useState<DataType[]>([]);
@@ -50,6 +53,31 @@ export default function MakeTestExam() {
                 trigger: ".parallax",
                 start: "top bottom",
                 end: "bottom top",
+                scrub: true,
+            },
+        });
+
+        // Additional animations using gsap
+        gsap.from(".fade-in-left", {
+            x: -100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".fade-in-left",
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true,
+            },
+        });
+
+        gsap.from(".fade-in-right", {
+            x: 100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".fade-in-right",
+                start: "top 80%",
+                end: "top 50%",
                 scrub: true,
             },
         });

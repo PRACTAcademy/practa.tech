@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Github, Twitter, MessageSquare, Facebook } from 'lucide-react';
 import TunnelAnimation from '../components/TunnelAnimation';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
     const [showRedGlow, setShowRedGlow] = useState(false);
@@ -28,13 +29,21 @@ const Footer = () => {
             <footer className="bg-black text-white pt-12 pb-16 relative z-20">
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                        <div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                        >
                             <h3 className="text-xl font-bold mb-4">MITPA</h3>
                             <p className="text-gray-400 text-sm">
                                 Building an open-source educational community that connects students and developers.
                             </p>
-                        </div>
-                        <div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+                        >
                             <h4 className="font-semibold mb-4">Quick Links</h4>
                             <ul className="space-y-2">
                                 <li><a href="#about" className="text-gray-400 hover:text-white text-sm">About Us</a></li>
@@ -42,8 +51,12 @@ const Footer = () => {
                                 <li><a href="#community" className="text-gray-400 hover:text-white text-sm">Community</a></li>
                                 <li><a href="#exams" className="text-gray-400 hover:text-white text-sm">Practice Exams</a></li>
                             </ul>
-                        </div>
-                        <div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                        >
                             <h4 className="font-semibold mb-4">Get Involved</h4>
                             <ul className="space-y-2">
                                 <li><a href="#contribute" className="text-gray-400 hover:text-white text-sm">Contribute</a></li>
@@ -51,8 +64,12 @@ const Footer = () => {
                                 <li><a href="#github" className="text-gray-400 hover:text-white text-sm">GitHub</a></li>
                                 <li><a href="#donate" className="text-gray-400 hover:text-white text-sm">Support Us</a></li>
                             </ul>
-                        </div>
-                        <div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+                        >
                             <h4 className="font-semibold mb-4">Connect</h4>
                             <div className="flex space-x-4 mb-4">
                                 <a href="#github" className="text-gray-400 hover:text-white">
@@ -69,7 +86,7 @@ const Footer = () => {
                                 </a>
                             </div>
                             <a href="#newsletter" className="mitra-button inline-block">Subscribe</a>
-                        </div>
+                        </motion.div>
                     </div>
                     <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
                         <div className="text-sm text-gray-500 mb-4 md:mb-0">

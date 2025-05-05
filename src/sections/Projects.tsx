@@ -31,6 +31,31 @@ export default function Projects() {
                 scrub: true,
             },
         });
+
+        // Additional animations using gsap
+        gsap.from(".fade-in-left", {
+            x: -100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".fade-in-left",
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true,
+            },
+        });
+
+        gsap.from(".fade-in-right", {
+            x: 100,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: ".fade-in-right",
+                start: "top 80%",
+                end: "top 50%",
+                scrub: true,
+            },
+        });
     }, []);
 
     return (
@@ -56,7 +81,7 @@ export default function Projects() {
                 {projects.map((project) => (
                     <div
                         key={project._id}
-                        className="bg-[#111] border border-red-500 rounded-xl p-4 shadow-lg"
+                        className="bg-[#111] border border-red-500 rounded-xl p-4 shadow-lg fade-in-left"
                     >
                         <div className="flex justify-between items-center mb-2">
                             <h2 className="text-2xl font-bold">{project.title}</h2>
