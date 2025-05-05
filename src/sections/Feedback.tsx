@@ -1,22 +1,47 @@
 'use client';
 
 import { useForm, ValidationError } from '@formspree/react';
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { useEffect } from "react";
 
 export default function Feedback() {
     const [state, handleSubmit] = useForm("yourFormID");
 
+    useEffect(() => {
+        gsap.to(".parallax", {
+            y: -50,
+            scrollTrigger: {
+                trigger: ".parallax",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+            },
+        });
+    }, []);
+
     if (state.succeeded) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-screen p-6">
+            <motion.div
+                className="flex flex-col items-center justify-center min-h-screen p-6 parallax"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
                 <h1 className="text-8xl font-bold mt-25 mb-10 ml-35 text-center">
                     thank you <br /> for <br /> your feedback
                 </h1>
-            </div>
+            </motion.div>
         );
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen p-6">
+        <motion.div
+            className="flex items-center justify-center min-h-screen p-6 parallax"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
             <div className="flex flex-row items-start space-x-80">
                 <h1 className="text-8xl font-bold text-left mt-20">
                     give us <br /> your <br /> feedback
@@ -81,6 +106,6 @@ export default function Feedback() {
                     </button>
                 </form>
             </div>
-        </div>
+        </motion.div>
     );
 }

@@ -4,6 +4,11 @@ import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Home from '@/sections/Home';
 import About from '@/sections/About';
+import BlogFeed from '@/sections/BlogPage';
+import Projects from '@/sections/Projects';
+import Community from '@/sections/Community';
+import Feedback from '@/sections/Feedback';
+import MakeTestExam from '@/sections/TestSe';
 import FAQ from '@/sections/FAQ';
 import SEs from '@/sections/SEs';
 import Footer from '@/components/Footer';
@@ -11,7 +16,7 @@ import { getMainEvent } from '@/Sanity/sanity';
 import './globals.css'
 
 export default function App() {
-    const [, setMainEvent] = useState(null);
+    const [mainEvent, setMainEvent] = useState(null);
 
     useEffect(() => {
         getMainEvent().then(data => setMainEvent(data));
@@ -59,8 +64,13 @@ export default function App() {
             }}>
                 <Home />
                 <About />
-                <FAQ />
+                <BlogFeed />
+                <Projects />
+                <Community event={mainEvent} />
                 <SEs />
+                <FAQ />
+                <MakeTestExam />
+                <Feedback />
             </main>
             <Footer />
         </div>

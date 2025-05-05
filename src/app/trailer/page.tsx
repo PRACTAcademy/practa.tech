@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { motion } from "framer-motion";
+import Image from 'next/image';
 import VimeoPlayer from '../../components/TrailerPlayer';
 
 export default function Trailer() {
@@ -81,6 +83,61 @@ export default function Trailer() {
             <div className="z-10 flex items-center justify-center h-full w-full animate-fade-in">
                 <VimeoPlayer />
             </div>
+            <motion.div
+                className="flex flex-col items-center justify-center mt-24 mb-24 z-20"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+                <motion.p
+                    className="text-5xl font-extrabold text-white mb-8 tracking-wide drop-shadow-xl"
+                    initial={{ scale: 0.8 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
+                >
+                    Credits
+                </motion.p>
+                <motion.div
+                    className="flex flex-row items-center justify-center gap-16 bg-white/10 rounded-2xl p-8 shadow-lg backdrop-blur-sm"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+                >
+                    <motion.div
+                        className="flex flex-col items-center"
+                        whileHover={{ scale: 1.07, rotate: -2 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                    >
+                        <span className="text-xl font-semibold text-white mb-3">Soundtrack from</span>
+                        <Link href="https://pixabay.com/pt/music/ambiente-midnight-forest-184304/" target="_blank" rel="noopener noreferrer">
+                            <Image
+                                src={"https://cdn-icons-png.flaticon.com/512/3291/3291666.png"}
+                                alt={"Pixabay"}
+                                width={80}
+                                height={80}
+                                className="rounded-lg shadow"
+                            />
+                        </Link>
+                    </motion.div>
+                    <div className="w-px bg-white/30 h-24 mx-6" />
+                    <motion.div
+                        className="flex flex-col items-center"
+                        whileHover={{ scale: 1.07, rotate: 2 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                    >
+                        <span className="text-xl font-semibold text-white mb-3">Videos from</span>
+                        <Link href="https://www.pexels.com/" target="_blank" rel="noopener noreferrer">
+                            <Image
+                                src={"https://cdn-1.webcatalog.io/catalog/pexels/pexels-icon-filled-256.png?v=1737601148637"}
+                                alt={"Pexels"}
+                                width={80}
+                                height={80}
+                                className="rounded-lg shadow"
+                            />
+                        </Link>
+                    </motion.div>
+                </motion.div>
+            </motion.div>
         </div>
     );
 }

@@ -1,6 +1,6 @@
-import sanityClient from '@sanity/client';
+import { createClient } from '@sanity/client';
 
-const client = sanityClient({
+const client = createClient({
     projectId: 'f77le0x7',
     dataset: 'production',
     apiVersion: '2023-01-01',
@@ -55,5 +55,3 @@ export async function getProjects() {
         throw new Error("Error fetching projects");
     }
 }
-
-export default client;

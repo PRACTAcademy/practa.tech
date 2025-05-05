@@ -3,6 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Github, Mail, Link as LinkIcon, Users } from 'lucide-react';
 import { getMainEvent } from '@/Sanity/sanity';
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { useEffect } from "react";
 
 type MainEvent = {
     name: string;
@@ -17,6 +20,18 @@ type Props = {
 };
 
 export default function Community({ event }: Props) {
+    useEffect(() => {
+        gsap.to(".parallax", {
+            y: -50,
+            scrollTrigger: {
+                trigger: ".parallax",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+            },
+        });
+    }, []);
+
     const formattedDate = event?.date
         ? new Date(event.date).toLocaleString('en-US', {
             month: 'long',
@@ -30,17 +45,27 @@ export default function Community({ event }: Props) {
 
     if (!event) {
         return (
-            <main className="min-h-screen text-white">
-                <section className="flex items-center justify-center p-6">
+            <motion.main
+                className="min-h-screen text-white z-20"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                <section className="flex items-center justify-center p-6 z-20">
                     <p className="text-white">No event data available</p>
                 </section>
-            </main>
+            </motion.main>
         );
     }
 
     return (
-        <main className="min-h-screen text-white">
-            <section className="flex items-center justify-center p-6">
+        <motion.main
+            className="min-h-screen text-white z-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
+            <section className="flex items-center justify-center p-6 z-20 parallax">
                 <div className="max-w-5xl w-full flex rounded-lg overflow-hidden border border-red-900">
                     {/* Texto */}
                     <div className="w-full md:w-1/2 p-8 flex flex-col justify-between">
@@ -69,7 +94,12 @@ export default function Community({ event }: Props) {
                 </div>
             </section>
 
-            <section className="flex flex-col p-6 space-y-8">
+            <motion.section
+                className="flex flex-col p-6 space-y-8 z-20 parallax"
+                initial={{ y: 50 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1 }}
+            >
                 <div>
                     <h1 className="text-5xl font-extrabold">Our Community</h1>
                 </div>
@@ -145,8 +175,8 @@ export default function Community({ event }: Props) {
                     <h2 className="text-5xl font-bold mb-6">Hall of Fame</h2>
                     <p className="text-xl text-gray-500 italic text-center mt-32">Coming soon...</p>
                 </div>
-            </section>
-        </main>
+            </motion.section>
+        </motion.main>
     );
 }
 

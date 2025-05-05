@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
 
 const COLORS = ["#FF4C4C", "#FFA500", "#FFD700", "#4CAF50"];
 
@@ -40,12 +42,28 @@ export default function MakeTestExam() {
 
                 setAvg((weightedSum / total) * 100);
             });
+
+        // GSAP parallax effect
+        gsap.to(".parallax", {
+            y: -50,
+            scrollTrigger: {
+                trigger: ".parallax",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+            },
+        });
     }, []);
 
     return (
-        <div className="min-h-screen text-white flex flex-col md:flex-row items-center justify-around p-10">
+        <motion.div
+            className="min-h-screen text-white flex flex-col md:flex-row items-center justify-around p-10 z-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
             {/* Left Side */}
-            <div className="max-w-lg">
+            <div className="max-w-lg z-20 parallax">
                 <h1 className="text-5xl font-extrabold">
                     Make a Test Exam <br />
                     <span className="text-gray-400 text-2xl font-bold">It’s free</span>
@@ -58,7 +76,12 @@ export default function MakeTestExam() {
             </div>
 
             {/* Right Side */}
-            <div className="mt-10 md:mt-0">
+            <motion.div
+                className="mt-10 md:mt-0 z-20 parallax"
+                initial={{ x: 100 }}
+                animate={{ x: 0 }}
+                transition={{ duration: 1 }}
+            >
                 <h2 className="text-lg font-semibold text-gray-300">Statistics</h2>
                 <h3 className="text-2xl font-bold mb-4">Exam Results</h3>
                 <div className="flex flex-col md:flex-row items-center">
@@ -84,16 +107,16 @@ export default function MakeTestExam() {
                     <ul className="ml-10 text-sm">
                         {data.map((entry, index) => (
                             <li key={index} className="flex items-center mb-2">
-                <span
-                    className="inline-block w-3 h-3 rounded-full mr-2"
-                    style={{ backgroundColor: COLORS[index] }}
-                ></span>
+                                <span
+                                    className="inline-block w-3 h-3 rounded-full mr-2"
+                                    style={{ backgroundColor: COLORS[index] }}
+                                ></span>
                                 {entry.name} — {LABELS[entry.name as keyof typeof LABELS]}
                             </li>
                         ))}
                     </ul>
                 </div>
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 }

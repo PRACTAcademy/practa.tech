@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { getBlogPosts } from '@/Sanity/sanity';
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
 
 // Define a better type for body based on your actual schema.
 // If the body is portable text (Sanity), you can use `unknown` or a more specific type.
@@ -22,18 +24,38 @@ export default function BlogFeed() {
         getBlogPosts()
             .then(setPosts)
             .catch(console.error);
+
+        gsap.to(".parallax", {
+            y: -50,
+            scrollTrigger: {
+                trigger: ".parallax",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+            },
+        });
     }, []);
 
     return (
-        <section className="text-white px-10 py-6 min-h-screen mt-15">
-            <div className="flex justify-between items-center border-b border-gray-700 pb-4 mb-6">
+        <motion.section
+            className="text-white px-10 py-6 min-h-screen mt-15 z-20 parallax"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
+            <div className="flex justify-between items-center border-b border-gray-700 pb-4 mb-6 z-20">
                 <h1 className="text-5xl font-bold">Blog Feed</h1>
                 <a href="#" className="text-sm text-gray-300 hover:underline flex items-center">
                     See More <span className="ml-1">→</span>
                 </a>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <motion.div
+                className="grid grid-cols-1 md:grid-cols-3 gap-6 z-20"
+                initial={{ y: 50 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1 }}
+            >
                 {posts.map((post) => (
                     <div
                         key={post._id}
@@ -66,7 +88,7 @@ export default function BlogFeed() {
                         </div>
                     </div>
                 ))}
-            </div>
-        </section>
+            </motion.div>
+        </motion.section>
     );
 }

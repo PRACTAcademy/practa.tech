@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { getProjects } from '@/Sanity/sanity';
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
 
 type Project = {
     _id: string;
@@ -19,18 +21,38 @@ export default function Projects() {
         getProjects()
             .then(setProjects)
             .catch(console.error);
+
+        gsap.to(".parallax", {
+            y: -50,
+            scrollTrigger: {
+                trigger: ".parallax",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+            },
+        });
     }, []);
 
     return (
-        <section className="text-white p-6 mt-15 text-lg">
-            <div className="flex justify-between items-center border-b border-gray-700 pb-4 mb-6">
+        <motion.section
+            className="text-white p-6 mt-15 text-lg z-20 parallax"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+        >
+            <div className="flex justify-between items-center border-b border-gray-700 pb-4 mb-6 z-20">
                 <h1 className="text-5xl font-bold mb-4">Open-Source Projects</h1>
                 <a href="#" className="text-sm text-gray-300 hover:underline flex items-center">
                     See More <span className="ml-1">→</span>
                 </a>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <motion.div
+                className="grid grid-cols-1 md:grid-cols-3 gap-6 z-20"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.8 }}
+            >
                 {projects.map((project) => (
                     <div
                         key={project._id}
@@ -67,7 +89,7 @@ export default function Projects() {
                         )}
                     </div>
                 ))}
-            </div>
-        </section>
+            </motion.div>
+        </motion.section>
     );
 }
