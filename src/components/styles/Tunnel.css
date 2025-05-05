@@ -1,0 +1,213 @@
+@keyframes tunnelEffect {
+    0% {
+        transform: scale(0.1) translateZ(-800px) rotateZ(5deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.2;
+    }
+    40% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(12) translateZ(2500px) rotateZ(-5deg);
+        opacity: 0;
+    }
+}
+
+@keyframes tunnelGlow {
+    0%, 100% {
+        box-shadow: 0 0 30px 15px rgba(234, 56, 76, 0.75),
+        inset 0 0 30px 12px rgba(234, 56, 76, 0.6);
+        border-color: rgba(234, 56, 76, 0.9);
+    }
+    50% {
+        box-shadow: 0 0 60px 25px rgba(234, 56, 76, 0.95),
+        inset 0 0 60px 25px rgba(234, 56, 76, 0.8);
+        border-color: rgba(255, 70, 90, 1);
+    }
+}
+
+@keyframes tunnelRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes lightFlash {
+    0%, 100% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.1;
+    }
+    75% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes lightRays {
+    0% {
+        opacity: 0.3;
+        transform: scale(0.8) rotate(0deg);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2) rotate(180deg);
+    }
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8) rotate(360deg);
+    }
+}
+
+@keyframes pulseButton {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px 2px rgba(234, 56, 76, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px 5px rgba(234, 56, 76, 0.9);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.pulse-button {
+    animation: pulseButton 2s infinite;
+    background-color: #ea384c;
+    transition: all 0.3s ease;
+}
+
+.pulse-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px 8px rgba(234, 56, 76, 0.9);
+}
+
+.tunnel-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 2000px; /* Increased for better 3D depth */
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.92);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+    overflow: hidden;
+    transform: translateZ(0); /* Force GPU acceleration */
+}
+
+.tunnel-container.active {
+    pointer-events: all;
+    opacity: 1;
+}
+
+/* Flash effect to add drama */
+.tunnel-flash {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(234, 56, 76, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+    animation: lightFlash 3s infinite;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+/* Light rays for dramatic effect */
+.light-rays {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(ellipse at center,
+    rgba(234, 56, 76, 0) 0%,
+    rgba(234, 56, 76, 0.1) 40%,
+    rgba(234, 56, 76, 0) 60%);
+    pointer-events: none;
+    animation: lightRays 15s infinite linear;
+    transform-origin: center;
+}
+
+.tunnel-ring {
+    position: absolute;
+    border: 4px solid #ea384c;
+    box-shadow: 0 0 30px 15px rgba(234, 56, 76, 0.7),
+    inset 0 0 30px 12px rgba(234, 56, 76, 0.5);
+    animation: tunnelEffect 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, tunnelGlow 2.5s infinite;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 0 8px rgba(234, 56, 76, 0.8));
+}
+
+.tunnel-container.continued .tunnel-ring {
+    animation: tunnelEffect 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, tunnelGlow 2.5s infinite;
+}
+
+.tunnel-rotate {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: tunnelRotate 20s linear infinite;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.fade-in {
+    animation: fadeIn 1s forwards;
+}
+
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+/* Enhanced responsive adjustments */
+@media (max-width: 768px) {
+    .tunnel-ring {
+        max-width: 90vw;
+        max-height: 80vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .tunnel-container {
+        perspective: 1200px;
+    }
+
+    .tunnel-ring {
+        border-width: 3px;
+    }
+}

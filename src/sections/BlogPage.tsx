@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { getBlogPosts } from '@/Sanity/sanity';
 
+// Define a better type for body based on your actual schema.
+// If the body is portable text (Sanity), you can use `unknown` or a more specific type.
 type BlogPost = {
     _id: string;
     title: string;
@@ -10,7 +12,7 @@ type BlogPost = {
     publishedAt: string;
     excerpt: string;
     coverImage: string;
-    body: any;
+    body: unknown; // Changed from `any` to `unknown`
 };
 
 export default function BlogFeed() {
