@@ -1,4 +1,4 @@
-# PRACTA.tech — MIT Preparation Academy
+# PRACTA.tech — Preparation Academy for College & Tech Admissions
 
 > 🌎 Democratizing access to high-quality education through technology, community, and purpose.
 
