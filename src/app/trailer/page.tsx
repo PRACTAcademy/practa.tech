@@ -5,13 +5,19 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from "framer-motion";
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import VimeoPlayer from '../../components/TrailerPlayer';
 
 export default function Trailer() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const containerRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
+    const [shouldRender, setShouldRender] = useState(false);
 
     useEffect(() => {
+        router.replace('/404');
+        setShouldRender(false);
+
         const handleMouseMove = (e: MouseEvent) => {
             if (containerRef.current) {
                 const rect = containerRef.current.getBoundingClientRect();
@@ -24,7 +30,11 @@ export default function Trailer() {
 
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, []);
+    }, [router]);
+
+    if (!shouldRender) {
+        return null;
+    }
 
     return (
         <div
@@ -34,7 +44,6 @@ export default function Trailer() {
                 background: 'linear-gradient(135deg, #0a0a0a 0%, #1e0505 100%)',
             }}
         >
-            {/* Cursor light effect */}
             <div
                 className="pointer-events-none absolute bg-red-200 opacity-20 blur-[120px] rounded-full w-64 h-64 z-0 transition-all duration-300 ease-out"
                 style={{
@@ -43,10 +52,8 @@ export default function Trailer() {
                 }}
             />
 
-            {/* Background animations */}
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-30 mix-blend-overlay"></div>
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,...')] opacity-30 mix-blend-overlay"></div>
 
-            {/* Floating particles */}
             <div className="absolute inset-0 overflow-hidden">
                 {Array.from({ length: 15 }).map((_, i) => (
                     <div
@@ -65,7 +72,6 @@ export default function Trailer() {
                 ))}
             </div>
 
-            {/* Back button */}
             <div className="absolute top-8 left-8 z-20">
                 <Link
                     href="/"
@@ -75,22 +81,24 @@ export default function Trailer() {
                         size={24}
                         className="group-hover:-translate-x-1 transition-transform duration-300"
                     />
-                    <span className="text-sm font-medium opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">Voltar</span>
+                    <span className="text-sm font-medium opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">Back</span>
                 </Link>
             </div>
 
-            {/* Main content */}
-            <div className="z-10 flex items-center justify-center h-full w-full animate-fade-in">
-                <VimeoPlayer />
+            <div className="z-10 flex items-center justify-center h-full w-full px-2 sm:px-4 animate-fade-in">
+                <div className="w-full sm:w-[90%] md:w-[70%]">
+                    <VimeoPlayer />
+                </div>
             </div>
+
             <motion.div
-                className="flex flex-col items-center justify-center mt-24 mb-24 z-20"
+                className="flex flex-col items-center justify-center mt-16 sm:mt-24 mb-16 sm:mb-24 z-20 px-4"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                 <motion.p
-                    className="text-5xl font-extrabold text-white mb-8 tracking-wide drop-shadow-xl"
+                    className="text-3xl sm:text-5xl font-extrabold text-white mb-6 sm:mb-8 tracking-wide drop-shadow-xl"
                     initial={{ scale: 0.8 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
@@ -98,7 +106,7 @@ export default function Trailer() {
                     Credits
                 </motion.p>
                 <motion.div
-                    className="flex flex-row items-center justify-center gap-16 bg-white/10 rounded-2xl p-8 shadow-lg backdrop-blur-sm"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 bg-white/10 rounded-2xl p-6 sm:p-8 shadow-lg backdrop-blur-sm"
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
@@ -108,31 +116,31 @@ export default function Trailer() {
                         whileHover={{ scale: 1.07, rotate: -2 }}
                         transition={{ type: "spring", stiffness: 300 }}
                     >
-                        <span className="text-xl font-semibold text-white mb-3">Soundtrack from</span>
-                        <Link href="https://pixabay.com/pt/music/ambiente-midnight-forest-184304/" target="_blank" rel="noopener noreferrer">
+                        <span className="text-base sm:text-xl font-semibold text-white mb-2 sm:mb-3">Soundtrack from</span>
+                        <Link href="https://pixabay.com/music/ambient-midnight-forest-184304/" target="_blank" rel="noopener noreferrer">
                             <Image
                                 src={"https://cdn-icons-png.flaticon.com/512/3291/3291666.png"}
                                 alt={"Pixabay"}
-                                width={80}
-                                height={80}
-                                className="rounded-lg shadow"
+                                width={60}
+                                height={60}
+                                className="sm:w-[80px] sm:h-[80px] rounded-lg shadow"
                             />
                         </Link>
                     </motion.div>
-                    <div className="w-px bg-white/30 h-24 mx-6" />
+                    <div className="hidden sm:block w-px bg-white/30 h-24 mx-6" />
                     <motion.div
                         className="flex flex-col items-center"
                         whileHover={{ scale: 1.07, rotate: 2 }}
                         transition={{ type: "spring", stiffness: 300 }}
                     >
-                        <span className="text-xl font-semibold text-white mb-3">Videos from</span>
+                        <span className="text-base sm:text-xl font-semibold text-white mb-2 sm:mb-3">Videos from</span>
                         <Link href="https://www.pexels.com/" target="_blank" rel="noopener noreferrer">
                             <Image
                                 src={"https://cdn-1.webcatalog.io/catalog/pexels/pexels-icon-filled-256.png?v=1737601148637"}
                                 alt={"Pexels"}
-                                width={80}
-                                height={80}
-                                className="rounded-lg shadow"
+                                width={60}
+                                height={60}
+                                className="sm:w-[80px] sm:h-[80px] rounded-lg shadow"
                             />
                         </Link>
                     </motion.div>

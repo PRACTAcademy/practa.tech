@@ -20,6 +20,7 @@ type DataType = {
 export default function MakeTestExam() {
     const [data, setData] = useState<DataType[]>([]);
     const [avg, setAvg] = useState<number>(0);
+    const [totalTests, setTotalTests] = useState<number>(0);
 
     useEffect(() => {
         fetch("/results.json")
@@ -34,16 +35,17 @@ export default function MakeTestExam() {
                 setData(chartData);
 
                 const total = chartData.reduce((sum, curr) => sum + curr.value, 0);
-                const weightedSum =
-                    chartData[0].value * 0.125 +
-                    chartData[1].value * 0.375 +
-                    chartData[2].value * 0.625 +
-                    chartData[3].value * 0.875;
+                setTotalTests(total);
 
-                setAvg((weightedSum / total) * 100);
+                const weightedSum =
+                    chartData[0]?.value * 0.125 +
+                    chartData[1]?.value * 0.375 +
+                    chartData[2]?.value * 0.625 +
+                    chartData[3]?.value * 0.875;
+
+                setAvg(total > 0 ? (weightedSum / total) * 100 : 0);
             });
 
-        // GSAP parallax effect
         gsap.to(".parallax", {
             y: -50,
             scrollTrigger: {
@@ -55,9 +57,15 @@ export default function MakeTestExam() {
         });
     }, []);
 
+    // Function to handle button click and redirect to /exam
+    const handleReadyClick = () => {
+        window.location.href = "/exam";
+    };
+
     return (
         <motion.div
-            className="min-h-screen text-white flex flex-col md:flex-row items-center justify-around p-4 sm:p-8 md:p-10 z-20"
+            id="test-se"
+            className="min-h-screen flex flex-col md:flex-row items-center justify-around p-4 sm:p-8 md:p-10 z-20"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -66,27 +74,109 @@ export default function MakeTestExam() {
             <div className="w-full max-w-lg z-20 parallax flex flex-col items-center md:items-start">
                 <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-center md:text-left">
                     Make a Test Exam <br />
-                    <span className="text-gray-400 text-lg sm:text-2xl font-bold">It’s free</span>
+                    <span className="text-lg sm:text-2xl font-bold">It&apos;s free</span>
                 </h1>
-                <p className="mt-4 sm:mt-6 text-sm font-semibold">60 Minutes - 40 Questions</p>
+                <p className="mt-4 sm:mt-6 text-sm font-semibold">60 Minutes - 10 Questions</p>
                 <div className="h-4 sm:h-6 bg-red-600 rounded-full w-full mt-2" />
-                <button className="mt-6 sm:mt-8 bg-red-600 px-6 sm:px-10 py-3 sm:py-5 rounded-md text-white font-bold text-lg sm:text-xl hover:bg-red-700 transition">
-                    I’m Ready!
+                <button
+                    className="mt-6 sm:mt-8 bg-red-600 px-6 sm:px-10 py-3 sm:py-5 rounded-md font-bold text-lg sm:text-xl hover:bg-red-700 transition"
+                    onClick={handleReadyClick}
+                >
+                    I&apos;m Ready!
                 </button>
+                {/* Chart + Legend for mobile, hidden on md+ */}
+                <div className="flex flex-col items-center w-full mt-10 md:hidden">
+                    <motion.div
+                        className="flex flex-col items-center w-full"
+                        initial={{ x: 100 }}
+                        animate={{ x: 0 }}
+                        transition={{ duration: 1 }}
+                    >
+                        <h2 className="text-base sm:text-lg font-semibold text-black-300">Statistics</h2>
+                        <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Exam Results</h3>
+                        <div
+                            className="mb-4 text-lg sm:text-xl font-thin"
+                            style={{
+                                color: "#fff",
+                                textShadow: "0 1px 12px rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.10)"
+                            }}
+                        >
+                            Tests taken: {totalTests}
+                        </div>
+                        <div className="flex flex-col items-center justify-center w-full">
+                            {/* Pie Chart */}
+                            <div className="relative w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] flex items-center justify-center mx-auto">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <PieChart>
+                                        <Pie
+                                            data={data}
+                                            dataKey="value"
+                                            innerRadius={60}
+                                            outerRadius={90}
+                                            paddingAngle={4}
+                                        >
+                                            {data.map((_, index) => (
+                                                <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                                            ))}
+                                        </Pie>
+                                    </PieChart>
+                                </ResponsiveContainer>
+                                <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                                    <p className="text-xl sm:text-3xl font-bold">{avg.toFixed(1)}%</p>
+                                    <p className="text-xs sm:text-sm">Average range</p>
+                                </div>
+                            </div>
+                            {/* Legend */}
+                            <ul className="mt-6 text-xs sm:text-sm text-center">
+                                {data.map((entry, index) => (
+                                    <li key={index} className="flex items-center justify-center mb-2">
+                                        <span
+                                            className="inline-block w-3 h-3 rounded-full mr-2"
+                                            style={{ backgroundColor: COLORS[index] }}
+                                        ></span>
+                                        {entry.name} — {LABELS[entry.name as keyof typeof LABELS]}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </motion.div>
+                </div>
             </div>
 
-            {/* Right Side */}
+            {/* Right Side for md+ */}
             <motion.div
-                className="w-full max-w-xl mt-10 md:mt-0 z-20 parallax flex flex-col items-center"
+                className="w-full max-w-xl mt-10 md:mt-0 z-20 parallax flex-col items-center hidden md:flex"
                 initial={{ x: 100 }}
                 animate={{ x: 0 }}
                 transition={{ duration: 1 }}
             >
-                <h2 className="text-base sm:text-lg font-semibold text-gray-300">Statistics</h2>
+                <h2 className="text-base sm:text-lg font-semibold text-black-300">Statistics</h2>
                 <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Exam Results</h3>
-                <div className="relative flex flex-col items-center sm:flex-row sm:items-center w-full">
-                    <div className="relative flex flex-col items-center">
-                        <ResponsiveContainer width={220} height={220}>
+                <div
+                    className="mb-4 text-lg sm:text-xl font-thin"
+                    style={{
+                        color: "#fff",
+                        textShadow: "0 1px 12px rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.10)"
+                    }}
+                >
+                    Tests taken: {totalTests}
+                </div>
+                <div className="flex flex-col-reverse items-center justify-center sm:flex-row sm:items-center sm:justify-center w-full">
+                    {/* Legend */}
+                    <ul className="sm:ml-8 mt-6 sm:mt-0 text-xs sm:text-sm text-center sm:text-left">
+                        {data.map((entry, index) => (
+                            <li key={index} className="flex items-center justify-center sm:justify-start mb-2">
+                                <span
+                                    className="inline-block w-3 h-3 rounded-full mr-2"
+                                    style={{ backgroundColor: COLORS[index] }}
+                                ></span>
+                                {entry.name} — {LABELS[entry.name as keyof typeof LABELS]}
+                            </li>
+                        ))}
+                    </ul>
+                    {/* Pie Chart */}
+                    <div className="relative w-[200px] h-[200px] sm:w-[220px] sm:h-[220px] flex items-center justify-center mx-auto">
+                        <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
                                 <Pie
                                     data={data}
@@ -101,22 +191,11 @@ export default function MakeTestExam() {
                                 </Pie>
                             </PieChart>
                         </ResponsiveContainer>
-                        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
                             <p className="text-xl sm:text-3xl font-bold">{avg.toFixed(1)}%</p>
-                            <p className="text-xs sm:text-sm text-gray-400">Average range</p>
+                            <p className="text-xs sm:text-sm">Average range</p>
                         </div>
                     </div>
-                    <ul className="sm:ml-8 mt-6 sm:mt-0 text-xs sm:text-sm">
-                        {data.map((entry, index) => (
-                            <li key={index} className="flex items-center mb-2">
-                                <span
-                                    className="inline-block w-3 h-3 rounded-full mr-2"
-                                    style={{ backgroundColor: COLORS[index] }}
-                                ></span>
-                                {entry.name} — {LABELS[entry.name as keyof typeof LABELS]}
-                            </li>
-                        ))}
-                    </ul>
                 </div>
             </motion.div>
         </motion.div>

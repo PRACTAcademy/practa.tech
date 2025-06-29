@@ -53,10 +53,10 @@ export default function About() {
     }, []);
 
     return (
-        <div className="mt-10 ml-4 md:ml-20 text-base md:text-lg max-w-4xl mx-auto px-2 md:px-0">
+        <div id="about" className="mt-10 ml-4 md:ml-20 text-base md:text-lg max-w-4xl mx-auto px-2 md:px-0">
             <h1 className="font-bold text-2xl md:text-3xl mt-5 fade-in parallax-title">Who We Are</h1>
             <p className="fade-in parallax-content mt-2">
-                MITPA is an open-source educational community that connects students from all around the world by democratizing knowledge <br className="hidden md:inline" /> through technology and collaboration.
+                PRACTA is an open-source educational community that connects students from all around the world by democratizing knowledge <br className="hidden md:inline" /> through technology and collaboration.
             </p>
 
             <h1 className="font-bold text-2xl md:text-3xl mt-8 fade-in parallax-title">Our Mission</h1>
@@ -76,7 +76,7 @@ export default function About() {
                         <li>Helping other students in the community</li>
                     </ul>
                     <p className="fade-in parallax-content mt-2">
-                        <a href="https://github.com/MITPA" className="text-blue-500 underline hover:text-blue-700" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/PRACTAcademy" className="text-blue-500 underline hover:text-blue-700" target="_blank" rel="noopener noreferrer">
                             Join us on GitHub
                         </a> to explore open issues, contribute to our repositories, or start something new.
                     </p>
@@ -93,7 +93,7 @@ export default function About() {
                         <li>100% Free &amp; 100% Open Source</li>
                     </ul>
                     <p className="fade-in parallax-content mt-2">
-                        And more! <a href="#" className="text-blue-500 underline hover:text-blue-700" target="_blank" rel="noopener noreferrer">Join Here!</a>
+                        And more! <a href="/discord" className="text-blue-500 underline hover:text-blue-700" target="_blank" rel="noopener noreferrer">Join Here!</a>
                     </p>
                 </div>
             </div>

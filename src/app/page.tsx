@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Home from '@/sections/Home';
 import About from '@/sections/About';
-import BlogFeed from '@/sections/BlogPage';
+import CountdownCalendar from '@/sections/CountdownCalendar';
 import Projects from '@/sections/Projects';
 import Community from '@/sections/Community';
 import Feedback from '@/sections/Feedback';
@@ -12,7 +12,9 @@ import MakeTestExam from '@/sections/TestSe';
 import FAQ from '@/sections/FAQ';
 import SEs from '@/sections/SEs';
 import Footer from '@/components/Footer';
+import WhyPRACTA from '@/components/WhyPRACTA';
 import { getMainEvent } from '@/Sanity/sanity';
+import Particles from '@/components/Particles';
 import './globals.css'
 
 export default function App() {
@@ -51,6 +53,7 @@ export default function App() {
             padding: 0,
             display: 'flex',
             flexDirection: 'column',
+            position: 'relative',
         }}>
             <Navbar />
             <main style={{
@@ -60,17 +63,50 @@ export default function App() {
                 padding: 0,
                 display: 'flex',
                 flexDirection: 'column',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                position: 'relative',
             }}>
-                <Home />
-                <About />
-                <BlogFeed />
-                <Projects />
-                <Community event={mainEvent} />
-                <SEs />
-                <FAQ />
-                <MakeTestExam />
-                <Feedback />
+                <section id="Home">
+                    <Home />
+                </section>
+                <div style={{ position: 'relative', width: '100%', minHeight: 0 }}>
+                    <Particles
+                        particleCount={90}
+                        style={{
+                            zIndex: 0,
+                            pointerEvents: 'none',
+                            minHeight: '2000px',
+                            maxHeight: 'none',
+                        }}
+                    />
+                    <section id="WhyPRACTA">
+                        <WhyPRACTA />
+                    </section>
+                    <section id="About">
+                        <About />
+                    </section>
+                    <section id="CountdownCalendar">
+                        <CountdownCalendar />
+                    </section>
+                    <section id="Projects">
+                        <Projects />
+                    </section>
+                    <section id="Community">
+                        <Community event={mainEvent} />
+                    </section>
+                    <section id="SEs">
+                        <SEs />
+                    </section>
+                    <section id="FAQ">
+                        <FAQ />
+                    </section>
+                    <section id="MakeTestExam">
+                        <MakeTestExam />
+                    </section>
+                    <section id="Feedback">
+                        <Feedback />
+                    </section>
+                </div>
             </main>
             <Footer />
         </div>

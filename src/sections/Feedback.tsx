@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 import { useEffect } from "react";
 
 export default function Feedback() {
-    const [state, handleSubmit] = useForm("yourFormID");
+    const [state, handleSubmit] = useForm("mqazkldl");
 
     useEffect(() => {
         gsap.to(".parallax", {
@@ -37,6 +37,7 @@ export default function Feedback() {
 
     return (
         <motion.div
+            id="feedback"
             className="flex items-center justify-center min-h-screen p-4 md:p-6 parallax"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -109,3 +110,4 @@ export default function Feedback() {
         </motion.div>
     );
 }
+

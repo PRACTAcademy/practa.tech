@@ -17,23 +17,23 @@ const FAQ = () => {
 
     const faqs = [
         {
-            question: "How do I join the MITPA community?",
+            question: "How do I join the PRACTA community?",
             answer: "You can join our community by signing up on our website, joining our Discord server, or contributing to one of our open-source projects on GitHub."
         },
         {
             question: "Are all the resources really free?",
-            answer: "Yes, all educational resources, practice exams, and community features on MITPA are completely free. We believe in democratizing education for everyone."
+            answer: "Yes, all educational resources, practice exams, and community features on PRACTA are completely free. We believe in democratizing education for everyone."
         },
         {
             question: "How can I contribute to the project?",
-            answer: "You can contribute by creating test questions, reviewing content, translating materials, reporting bugs, suggesting features, or sharing MITPA with others."
+            answer: "You can contribute by creating test questions, reviewing content, translating materials, reporting bugs, suggesting features, or sharing PRACTA with others."
         },
         {
             question: "What types of exams are available?",
             answer: "We offer practice exams for various technical certifications, academic subjects, language proficiency tests, and professional qualifications."
         },
         {
-            question: "Do I need to create an account to use MITPA?",
+            question: "Do I need to create an account to use PRACTA?",
             answer: "While some features are available without an account, creating a free account gives you access to track your progress, save exam results, and participate in the community."
         },
         {
@@ -98,7 +98,7 @@ const FAQ = () => {
         <section
             id="faq"
             ref={rootRef}
-            className="mitpa-section relative z-10 text-white"
+            className="mitpa-section relative z-10"
         >
             <div className="max-w-7xl mx-auto">
                 <h2 className="mitpa-heading font-bold text-4xl faq-heading faq-parallax">

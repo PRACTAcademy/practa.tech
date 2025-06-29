@@ -8,13 +8,12 @@ import { useState } from 'react';
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
 
-    // Hide nav options on mobile, show menu icon. On desktop show nav links.
     return (
         <nav className="sticky top-0 z-50 bg-gray-200 px-6 py-3 flex justify-between items-center shadow-sm">
             <Link href="/">
                 <Image
                     src="/Logo.png"
-                    alt="MITPA Logo"
+                    alt="Logo"
                     width={1198}
                     height={429}
                     className="object-contain h-10 w-auto"
@@ -23,16 +22,16 @@ export default function Navbar() {
             </Link>
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center space-x-5 text-sm text-gray-700">
-                <Link href="/about" className="hover:underline">About</Link>
-                <Link href="/blog" className="hover:underline">Blog</Link>
-                <Link href="/faq" className="hover:underline">FAQ</Link>
-                <Link href="/test-exam" className="hover:underline">Test Exam</Link>
-                <Link href="/contact" className="hover:underline">Contact</Link>
-                <Link href="/docs" className="hover:underline">Docs</Link>
-                <Link href="/donate">
+                <Link href="/#About" className="hover:underline">About</Link>
+                <Link href="/#CountdownCalendar" className="hover:underline">Countdown</Link>
+                <Link href="/#FAQ" className="hover:underline">FAQ</Link>
+                <Link href="/#MakeTestExam" className="hover:underline">Test Exam</Link>
+                <Link href="/#Feedback" className="hover:underline">Contact</Link>
+                <Link href="https://docs.practa.tech*" className="hover:underline">Docs</Link>
+                <Link href="https://patreon.com/practa">
                     <button className="border border-black rounded-md px-3 py-1 hover:bg-black hover:text-white transition">Donate</button>
                 </Link>
-                <Link href="/dashboard">
+                <Link href="https://dashboard.practa.tech">
                     <button className="bg-black text-white rounded-md px-3 py-1 hover:bg-gray-800 transition">Dashboard</button>
                 </Link>
             </div>
@@ -60,16 +59,16 @@ export default function Navbar() {
                                 aria-label="Close menu"
                                 onClick={() => setMenuOpen(false)}
                             >&times;</button>
-                            <Link href="/about" className="hover:underline" onClick={() => setMenuOpen(false)}>About</Link>
-                            <Link href="/blog" className="hover:underline" onClick={() => setMenuOpen(false)}>Blog</Link>
-                            <Link href="/faq" className="hover:underline" onClick={() => setMenuOpen(false)}>FAQ</Link>
-                            <Link href="/test-exam" className="hover:underline" onClick={() => setMenuOpen(false)}>Test Exam</Link>
-                            <Link href="/contact" className="hover:underline" onClick={() => setMenuOpen(false)}>Contact</Link>
-                            <Link href="/docs" className="hover:underline" onClick={() => setMenuOpen(false)}>Docs</Link>
-                            <Link href="/donate" onClick={() => setMenuOpen(false)}>
+                            <Link href="/#About" className="hover:underline" onClick={() => setMenuOpen(false)}>About</Link>
+                            <Link href="/#CountdownCalendar" className="hover:underline" onClick={() => setMenuOpen(false)}>Countdown</Link>
+                            <Link href="/#FAQ" className="hover:underline" onClick={() => setMenuOpen(false)}>FAQ</Link>
+                            <Link href="/#MakeTestExam" className="hover:underline" onClick={() => setMenuOpen(false)}>Test Exam</Link>
+                            <Link href="/#Feedback" className="hover:underline" onClick={() => setMenuOpen(false)}>Contact</Link>
+                            <Link href="https://docs.practa.tech" className="hover:underline" onClick={() => setMenuOpen(false)}>Docs</Link>
+                            <Link href="https://patreon.com/practa" onClick={() => setMenuOpen(false)}>
                                 <button className="border border-white rounded-md px-3 py-1 hover:bg-black hover:text-white w-full text-left mt-2">Donate</button>
                             </Link>
-                            <Link href="/dashboard" onClick={() => setMenuOpen(false)}>
+                            <Link href="https://dashboard.practa.tech" onClick={() => setMenuOpen(false)}>
                                 <button className="bg-white text-black rounded-md px-3 py-1 hover:bg-gray-800 w-full text-left mt-2">Dashboard</button>
                             </Link>
                         </div>

@@ -24,7 +24,6 @@ export default function WelcomePage() {
 
     const [showDonate, setShowDonate] = useState(true);
 
-    // Responsivity: update Vanta on resize
     useEffect(() => {
         function handleResize() {
             if (vantaEffect.current && vantaRef.current) {
@@ -54,6 +53,7 @@ export default function WelcomePage() {
                 color2: 0xff0000,
                 size: 1.0,
                 backgroundColor: 0x000000,
+                vertexColors: false, // <-- Correção: Defina explicitamente!
             }) as VantaGlobeEffect;
         }
         return () => {
@@ -83,20 +83,6 @@ export default function WelcomePage() {
         typeof window !== "undefined" && window.innerWidth <= 768;
     const { scrollY } = useScroll();
 
-    // -- Deixe o efeito MAIS RÁPIDO multiplicando os valores finais! --
-    const speedFactor = isMobile ? 2 : 2;
-
-    const backgroundHeight = useTransform(
-        scrollY,
-        [0, scrollMax],
-        [0, (typeof window !== "undefined" ? window.innerHeight : 800) * speedFactor]
-    );
-    const smoothHeight = useSpring(backgroundHeight, {
-        stiffness: 120,
-        damping: 16,
-    });
-
-    // ----------- Lógica para esconder o botão Donate -----------
     useEffect(() => {
         function onScroll() {
             if (!parallaxRef.current) return;
@@ -109,9 +95,7 @@ export default function WelcomePage() {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
-    // ----------- ANIMAÇÃO SUAVE AO SCROLL -----------
-    // Parâmetros para o efeito de crescimento, suavidade e vida
-    const sectionStart = isMobile ? 0.3 : 0.4; // porcentagem do scroll até a seção
+    const sectionStart = isMobile ? 0.3 : 0.4;
     const sectionEnd = isMobile ? 0.85 : 0.95;
 
     const yRaw = useTransform(
@@ -128,12 +112,10 @@ export default function WelcomePage() {
     const y = useSpring(yRaw, { stiffness: 90, damping: 18, mass: 0.8 });
     const scale = useSpring(scaleRaw, { stiffness: 80, damping: 15 });
 
-    // ----------- FIM DA ANIMAÇÃO SUAVE -----------
-
     return (
         <>
             {/* Hero Section */}
-            <div className="relative h-screen w-screen overflow-hidden text-white font-sans">
+            <div id="home" className="relative h-screen w-screen overflow-hidden text-white font-sans">
                 <div
                     ref={vantaRef}
                     className="absolute top-0 left-0 w-full h-full -z-10"
@@ -146,46 +128,36 @@ export default function WelcomePage() {
                         className="max-w-xl text-center"
                     >
                         <h1 className="text-4xl md:text-6xl font-extrabold text-white">
-                            Welcome to <span className="text-red-700">MIT</span>
-                            <span className="text-white italic">PA</span>
+                            Welcome to <span className="text-red-700">PRA</span>
+                            <span className="text-white italic">CTA</span>
                         </h1>
                         <p className="text-base md:text-lg font-medium leading-relaxed mt-4">
-                            Welcome to the MITPA educational community, where students prepare for the SAT and admission to MIT. Explore a world of knowledge!
+                            Welcome to the PRACTA educational community, where students prepare for the SAT and admission to MIT. Explore a world of knowledge!
                         </p>
                     </motion.div>
                 </div>
-                {/* Donate Button -- agora animado! */}
                 <AnimatePresence>
                     {showDonate && (
-
-                        <Link href="https://patreon.com/MITPA" passHref>
-                        <motion.button
-                            key="donate"
-                            initial={{ opacity: 0, y: 40, scale: 0.9 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 40, scale: 0.9 }}
-                            transition={{ duration: 0.35, ease: "easeInOut" }}
-                            className="fixed bottom-6 left-6 z-50 border border-white text-white px-10 py-2 bg-transparent hover:bg-white/10 transition-colors duration-200 font-semibold"
-                            style={{ pointerEvents: "auto" }}
-                        >
-                            Donate
-                        </motion.button>
+                        <Link href="https://patreon.com/PRACTA" passHref>
+                            <motion.button
+                                key="donate"
+                                initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: 40, scale: 0.9 }}
+                                transition={{ duration: 0.35, ease: "easeInOut" }}
+                                className="fixed bottom-6 left-6 z-50 border border-white text-white px-10 py-2 bg-transparent hover:bg-white/10 transition-colors duration-200 font-semibold"
+                                style={{ pointerEvents: "auto" }}
+                            >
+                                Donate
+                            </motion.button>
                         </Link>
                     )}
                 </AnimatePresence>
             </div>
-            {/* Parallax Scroll Section */}
             <div
                 ref={parallaxRef}
                 className="relative bg-black text-black min-h-[200vh] -z-10"
             >
-                <motion.div
-                    className="fixed top-0 left-0 w-full z-0 bg-gradient-to-b from-red-700 via-red-500 to-gray-200"
-                    style={{
-                        height: smoothHeight,
-                        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-                    }}
-                />
                 <motion.div
                     className="z-10 relative max-w-2xl text-center px-6 mx-auto pt-[110vh] drop-shadow-lg"
                     initial={{ opacity: 0, y: 120, scale: 0.85, rotate: 0 }}
@@ -198,9 +170,8 @@ export default function WelcomePage() {
                         bounce: 0.25,
                     }}
                     viewport={{ once: true, margin: "-20%" }}
-                    style={{ y, scale, rotate: 0 }} // <--- Título reto, sem rotate
+                    style={{ y, scale, rotate: 0 }}
                 >
-                    {/* Título reto com underline animado */}
                     <motion.h2
                         className="text-3xl md:text-5xl font-extrabold text-white relative inline-block"
                         initial={{ opacity: 0, y: 40 }}
@@ -224,7 +195,6 @@ export default function WelcomePage() {
                             style={{ originX: 0 }}
                         />
                     </motion.h2>
-                    {/* Frase com animação horizontal e "Embrace" destacado e animado */}
                     <motion.p
                         initial={{ opacity: 0, x: -60 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -237,7 +207,7 @@ export default function WelcomePage() {
                             initial={{ scale: 0.8, opacity: 0, rotate: -10 }}
                             whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
                             transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-                            className="inline-block font-semibold text-red-900 animate-pulse"
+                            className="inline-block font-semibold text-red-600 animate-pulse"
                             style={{
                                 textShadow: "0 0 8px rgba(255,100,100,0.4), 0 0 16px rgba(255, 0, 0, 0.15)",
                                 filter: "drop-shadow(0 0 12px rgba(255,0,0,0.18))",

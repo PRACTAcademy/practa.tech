@@ -13,12 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "MITPA - MIT Preparation Academy",
+    title: "PRACTA | Preparation Academy for College & Tech Admissions",
     description:
-        "MITPA is an open-source community platform that helps students prepare for MIT admissions through study challenges, AI-generated tests, rankings, and collaborative learning tools.",
+        "PRACTA is an open-source community platform that helps students prepare for MIT admissions through study challenges, AI-generated tests, rankings, and collaborative learning tools.",
     keywords: [
-        "MITPA",
-        "MIT",
+        "PRACTA",
         "MIT preparation",
         "MIT admissions",
         "AI study tools",
@@ -31,27 +30,27 @@ export const metadata: Metadata = {
         "college admissions",
     ],
     authors: [
-        { name: "MITPA Team", url: "https://mitpa.tech" },
-        { name: "Founder: TheusHen (MITPA)" },
+        { name: "PRACTA Team", url: "https://PRACTA.tech" },
+        { name: "Founder: TheusHen (PRACTA)" },
     ],
-    creator: "MITPA Team",
-    publisher: "MITPA",
-    metadataBase: new URL("https://mitpa.tech"),
+    creator: "PRACTA Team",
+    publisher: "PRACTA",
+    metadataBase: new URL("https://practa.tech"),
     icons: {
         icon: "/favicon.ico",
     },
     openGraph: {
-        title: "MITPA - MIT Preparation Academy",
+        title: "PRACTA - Preparation Academy for College & Tech Admissions",
         description:
-            "Join MITPA, a collaborative and open-source platform designed to guide students on their journey to MIT through AI-powered tools, PDF tests, rankings, and more.",
-        url: "https://mitpa.tech",
-        siteName: "MITPA",
+            "Join PRACTA, a collaborative and open-source platform designed to guide students on their journey to MIT through AI-powered tools, PDF exams, rankings, and more.",
+        url: "https://practa.tech",
+        siteName: "PRACTA",
         images: [
             {
                 url: "https://avatars.githubusercontent.com/u/202357253",
                 width: 1198,
                 height: 429,
-                alt: "MITPA - MIT Preparation Academy",
+                alt: "PRACTA - Preparation Academy for College & Tech Admissions",
             },
         ],
         locale: "en_US",
@@ -59,12 +58,12 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "MITPA - MIT Preparation Alliance",
+        title: "PRACTA - Preparation Academy for College & Tech Admissions",
         description:
-            "Prepare for MIT with AI-generated tests, user rankings, and collaborative tools. MITPA is open-source and built for future innovators.",
-        site: "@MITPA_Official",
-        creator: "@MITPA_Official",
-        images: ["/MITPA.svg"],
+            "Prepare for MIT and others with AI-generated tests, user rankings, and collaborative tools. PRACTA is open-source and built for future innovators.",
+        site: "@PRACTATech",
+        creator: "@PRACTATech",
+        images: ["/PRACTA.jpg"],
     },
     robots: {
         index: true,
@@ -73,7 +72,7 @@ export const metadata: Metadata = {
     },
     themeColor: "#000000",
     category: "education",
-    applicationName: "MITPA",
+    applicationName: "PRACTA",
 };
 
 export default function RootLayout({

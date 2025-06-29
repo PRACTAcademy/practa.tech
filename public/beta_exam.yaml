@@ -1,0 +1,104 @@
+creator: PRACTA Academy
+id: EXAM-BETA-001
+title: PRACTA Beta Exam
+subtitle: General Knowledge and Reasoning
+questions:
+  - id: 1
+    statement: A function f(x) = 2x² - 8x + k has its minimum at x = 2. Which value of k makes f(x) = 0 have two distinct real roots?
+    alternatives:
+      A: k < 0
+      B: k > 0
+      C: k = 0
+      D: k < 8
+      E: k > 8
+
+  - id: 2
+    statement: |
+      In a group, there are four friends: Ana, Bruno, Clara, and Daniel.
+      It is known that:
+        - If Ana goes to the movies, then Bruno goes too.
+        - If Bruno doesn’t go, then Clara goes.
+        - Daniel goes only if Clara goes.
+      If Ana does not go to the movies, who certainly goes?
+    alternatives:
+      A: Bruno
+      B: Clara
+      C: Daniel
+      D: Ana
+      E: Nobody
+
+  - id: 3
+    statement: An object is launched vertically upwards with an initial speed of 20 m/s. The local gravity is 10 m/s². What is the maximum height reached?
+    alternatives:
+      A: 10 m
+      B: 20 m
+      C: 30 m
+      D: 40 m
+      E: 50 m
+
+  - id: 4
+    statement: |
+      Read the excerpt: "Technology never sleeps, but should we?"
+      Which option best expresses the main theme?
+    alternatives:
+      A: The need to switch off electronic devices.
+      B: The impact of technology on human sleep.
+      C: The constant evolution of science.
+      D: The link between electricity and productivity.
+      E: The rise of artificial intelligence.
+
+  - id: 5
+    statement: |
+      Choose the option that best completes the sentence: "If I ____ more time, I would travel around the world."
+    alternatives:
+      A: has
+      B: have
+      C: had
+      D: will have
+      E: having
+
+  - id: 6
+    statement: What is the sum of all integers from 1 to 100 inclusive?
+    alternatives:
+      A: 5050
+      B: 5000
+      C: 4950
+      D: 5150
+      E: 5500
+
+  - id: 7
+    statement: A car accelerates from 10 m/s to 30 m/s in 4 seconds. What is the average acceleration?
+    alternatives:
+      A: 4 m/s²
+      B: 5 m/s²
+      C: 6 m/s²
+      D: 7 m/s²
+      E: 8 m/s²
+
+  - id: 8
+    statement: |
+      All PRACTA students love challenges. Matheus is a PRACTA student. Therefore:
+    alternatives:
+      A: Matheus doesn’t like challenges.
+      B: Matheus might like challenges.
+      C: Matheus likes challenges.
+      D: Matheus hates challenges.
+      E: Nothing can be concluded.
+
+  - id: 9
+    statement: Which of these elements is liquid at room temperature?
+    alternatives:
+      A: Iron
+      B: Mercury
+      C: Aluminum
+      D: Zinc
+      E: Copper
+
+  - id: 10
+    statement: What is the main goal of the annual COP conferences organized by the UN?
+    alternatives:
+      A: Discuss global economy
+      B: Debate human rights
+      C: Promote peace agreements
+      D: Negotiate actions against climate change
+      E: Regulate international trade
