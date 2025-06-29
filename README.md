@@ -1,10 +1,10 @@
-# MITPA.tech — MIT Preparation Academy
+# PRACTA.tech — MIT Preparation Academy
 
 > 🌎 Democratizing access to high-quality education through technology, community, and purpose.
 
 ## Overview
 
-**MITPA.tech** is an open-source educational platform designed to support students preparing for international exams such as the **SAT**, **ACT**, **PSAT**, **Cambridge English**, and especially **MIT admission**.  
+**PRACTA.tech** is an open-source educational platform designed to support students preparing for international exams such as the **SAT**, **ACT**, **PSAT**, **Cambridge English**, and especially **MIT admission**.  
 The project blends technology, collaboration, and accessibility to create an engaging, free, and efficient learning experience.
 
 ---
@@ -21,14 +21,14 @@ The project blends technology, collaboration, and accessibility to create an eng
 ## Features
 
 ### 📚 Simulated Exams (SEs)
-- Simulated tests in the exclusive MITPA format.
+- Simulated tests in the exclusive PRACTA format.
 - Real-time results with graphs and detailed stats.
 - Covers SAT, ACT, PSAT, and Cambridge exams.
 
 ### 🤖 Discord Bot
 - Commands to take SEs, track stats, and climb the ranking.
 - Points, levels, and activity history system.
-- Fully integrated with the MITPA Discord community.
+- Fully integrated with the PRACTA Discord community.
 
 ### 🧠 AI-Powered Test Generation *(in development)*
 - Automatic SE generation based on previous tests.
@@ -53,7 +53,7 @@ The project blends technology, collaboration, and accessibility to create an eng
 - **TypeScript** — Strong typing for better safety and productivity.
 - **TailwindCSS** — Fast, responsive, and clean styling.
 - **Radix UI**, **Lucide React**, **GSAP** — UI components and animations.
-- **Discord.js** — Bot integration with the MITPA community.
+- **Discord.js** — Bot integration with the PRACTA community.
 - **Formspree** — Contact and feedback forms.
 - **Amazon S3** — Storage for exams and large-scale data.
 - **Vercel** — Continuous deployment and optimized hosting.
@@ -65,8 +65,8 @@ The project blends technology, collaboration, and accessibility to create an eng
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/MITPAcademy/mitpa.tech.git
-cd mitpa.tech
+git clone https://github.com/PRACTAcademy/practa.tech.git
+cd practa.tech
 npm install
 ```
 
@@ -82,7 +82,7 @@ Open `http://localhost:3000` in your browser.
 
 ## 🤝 Contributing
 
-Want to contribute to MITPA.tech? Here’s how:
+Want to contribute to PRACTA.tech? Here’s how:
 
 1. Fork this repository.
 2. Create a new branch: `git checkout -b my-feature`.
@@ -96,15 +96,15 @@ Code, content, proofreading, and translation contributions are all welcome! 💜
 
 ## 📚 Documentation
 
-Access the full [documentation](https://dashboard.mitpa.tech/docs) via the top menu on the website or inside this repository.
+Access the full [documentation](https://docs.practa.tech) via the top menu on the website or inside this repository.
 
 ---
 
 ## 📡 Contact & Community
 
-- 🌐 **Website:** [https://mitpa.tech](https://mitpa.tech)
-- 💬 **Discord:** [MITPA Community](https://mitpa.tech/discord)
-- 💻 **GitHub:** [MITPAcademy](https://github.com/MITPAcademy)
+- 🌐 **Website:** [https://practa.tech](https://practa.tech)
+- 💬 **Discord:** [PRACTA Community](https://practa.tech/discord)
+- 💻 **GitHub:** [PRACTAcademy](https://github.com/PRACTAcademy)
 
 ---
 
@@ -114,4 +114,4 @@ MIT — see the `LICENSE` file for more information.
 
 ---
 
-> 🧠 MITPA.tech — Technology empowering education. For everyone.
+> 🧠 PRACTA.tech — Technology empowering education. For everyone.
