@@ -27,7 +27,7 @@ export default function Navbar() {
                 <Link href="/#FAQ" className="hover:underline">FAQ</Link>
                 <Link href="/#MakeTestExam" className="hover:underline">Test Exam</Link>
                 <Link href="/#Feedback" className="hover:underline">Contact</Link>
-                <Link href="https://docs.practa.tech*" className="hover:underline">Docs</Link>
+                <Link href="https://docs.practa.tech" className="hover:underline">Docs</Link>
                 <Link href="https://patreon.com/practa">
                     <button className="border border-black rounded-md px-3 py-1 hover:bg-black hover:text-white transition">Donate</button>
                 </Link>
