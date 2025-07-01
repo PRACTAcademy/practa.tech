@@ -31,8 +31,8 @@ export default function Navbar() {
                 <Link href="https://patreon.com/practa">
                     <button className="border border-black rounded-md px-3 py-1 hover:bg-black hover:text-white transition">Donate</button>
                 </Link>
-                <Link href="https://dashboard.practa.tech">
-                    <button className="bg-black text-white rounded-md px-3 py-1 hover:bg-gray-800 transition">Dashboard</button>
+                <Link href="https://practa.tech/discord">
+                    <button className="bg-black text-white rounded-md px-3 py-1 hover:bg-gray-800 transition">Discord</button>
                 </Link>
             </div>
             {/* Mobile Nav */}
@@ -68,8 +68,8 @@ export default function Navbar() {
                             <Link href="https://patreon.com/practa" onClick={() => setMenuOpen(false)}>
                                 <button className="border border-white rounded-md px-3 py-1 hover:bg-black hover:text-white w-full text-left mt-2">Donate</button>
                             </Link>
-                            <Link href="https://dashboard.practa.tech" onClick={() => setMenuOpen(false)}>
-                                <button className="bg-white text-black rounded-md px-3 py-1 hover:bg-gray-800 w-full text-left mt-2">Dashboard</button>
+                            <Link href="https://practa.tech/discord" onClick={() => setMenuOpen(false)}>
+                                <button className="bg-white text-black rounded-md px-3 py-1 hover:bg-gray-800 w-full text-left mt-2">Discord</button>
                             </Link>
                         </div>
                     </div>

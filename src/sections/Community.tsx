@@ -210,6 +210,17 @@ function CommunitySections() {
                                     <Mail size={24} />
                                 </a>
                             </div>
+                            <div className="mt-8 flex justify-start">
+                                <a
+                                    href="https://practa.tech/discord"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <button className="w-85 mt-8 bg-gradient-to-r ml-20 from-blue-600 via-blue-500 to-blue-400 pl-2 pr-8 py-4 rounded-2xl shadow-2xl hover:scale-105 hover:shadow-blue-500/40 transition-transform duration-200 font-bold text-2xl text-white tracking-wide flex items-center justify-center">
+                                        Join Discord
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </motion.div>
