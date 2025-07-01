@@ -210,13 +210,30 @@ function CommunitySections() {
                                     <Mail size={24} />
                                 </a>
                             </div>
-                            <div className="mt-8 flex justify-start">
+                            <div className="mt-8 flex justify-start w-full">
                                 <a
                                     href="https://practa.tech/discord"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    className="block w-full sm:w-auto"
                                 >
-                                    <button className="w-85 mt-8 bg-gradient-to-r ml-20 from-blue-600 via-blue-500 to-blue-400 pl-2 pr-8 py-4 rounded-2xl shadow-2xl hover:scale-105 hover:shadow-blue-500/40 transition-transform duration-200 font-bold text-2xl text-white tracking-wide flex items-center justify-center">
+                                    <button
+                                        className="
+                                            w-90 sm:w-130
+                                            mt-6
+                                            bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400
+                                            px-6 sm:px-8
+                                            py-3 sm:py-3
+                                            rounded-2xl shadow-2xl
+                                            hover:scale-105 hover:shadow-blue-500/40
+                                            transition-transform duration-200
+                                            font-bold
+                                            text-lg sm:text-xl
+                                            text-white tracking-wide
+                                            flex items-center justify-center
+                                          "
+                                        type="button"
+                                    >
                                         Join Discord
                                     </button>
                                 </a>
