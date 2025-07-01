@@ -13,6 +13,7 @@ type Project = {
     thumbnail: string;
     technologies: string[];
     link: string;
+    baseDevelopment?: boolean;
 };
 
 const STATIC_PROJECTS: Project[] = [
@@ -23,6 +24,7 @@ const STATIC_PROJECTS: Project[] = [
         thumbnail: 'https://cdn.practa.tech/Prax.logo.png',
         technologies: ['Python', 'Tkinter', 'LaTeX', 'PyYAML', 'Pytest', 'GitHub Actions'],
         link: 'https://github.com/PRACTAcademy/PRAX',
+        baseDevelopment: false
     },
     {
         _id: '2',
@@ -31,6 +33,7 @@ const STATIC_PROJECTS: Project[] = [
         thumbnail: 'https://cdn.practa.tech/ForgeAI.logo.png',
         technologies: ['Python', 'Go', 'YAML', 'AI', 'S3 Storage'],
         link: 'https://github.com/PRACTAcademy/ForgeAI',
+        baseDevelopment: true
     },
 ];
 
@@ -77,6 +80,14 @@ export default function Projects() {
         });
     }, []);
 
+    // Handler for "See Project" click
+    const handleProjectClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, project: Project) => {
+        if (project.baseDevelopment) {
+            e.preventDefault();
+            window.alert('Este projeto ainda está em desenvolvimento!\nO repositório ainda não existe ou está privado.');
+        }
+    };
+
     return (
         <section
             id="projects"
@@ -102,23 +113,33 @@ export default function Projects() {
                         />
                         <div className="flex justify-between items-center mb-2">
                             <h2 className="text-xl font-bold text-white">{project.title}</h2>
-                            <span className="w-4 h-4 bg-gradient-to-tr from-white to-red-600 rounded shadow-sm" />
                         </div>
-                        <div className="w-full h-44 rounded-md overflow-hidden shadow-md mb-4 border-2 border-[#242424]">
+                        <div className="w-full aspect-[4/3] rounded-md overflow-hidden shadow-md mb-4 border-2 border-[#242424] flex items-center justify-center bg-transparent">
                             <img
                                 src={project.thumbnail}
                                 alt={project.title}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                                style={{
+                                    maxHeight: '100%',
+                                    maxWidth: '100%',
+                                    objectFit: 'contain'
+                                }}
                             />
                         </div>
                         <p className="text-gray-300 text-sm mb-2">{project.description}</p>
                         <a
-                            href={project.link}
+                            href={project.baseDevelopment ? "#" : project.link}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-block mt-2 text-sm font-semibold text-red-400 bg-red-400/10 border border-red-400/30 rounded-md px-4 py-1 hover:bg-red-500/20 hover:text-white transition-colors duration-200 shadow"
+                            className={`inline-block mt-2 text-sm font-semibold 
+                                ${project.baseDevelopment
+                                ? "text-gray-400 bg-gray-500/10 border border-gray-500/30 cursor-not-allowed"
+                                : "text-red-400 bg-red-400/10 border border-red-400/30 hover:bg-red-500/20 hover:text-white transition-colors duration-200"
+                            } rounded-md px-4 py-1 shadow`}
+                            onClick={(e) => handleProjectClick(e, project)}
+                            tabIndex={0}
                         >
-                            See Project
+                            {project.baseDevelopment ? "Em desenvolvimento" : "Ver Projeto"}
                         </a>
                         {project.technologies && (
                             <div className="flex flex-wrap mt-3 gap-2 text-xs">
